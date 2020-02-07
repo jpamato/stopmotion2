@@ -1,0 +1,54 @@
+# =============== #
+# Unity generated #
+# =============== #
+Temp/
+Obj/
+UnityGenerated/
+Library/
+Assets/AssetStoreTools*
+
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Assets/Rooms/
+Assets/Resources/images/
+
+# ============ #
+# VIM #
+# ============ #
+*~
+*.swp
+*.swo
+CruceDeMundos/Assets/Images/area1/area1_puerto1x1.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puerto2x1_hori.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puerto2x1_verti.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puerto3x3.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puerto6x3.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puertoBarco1.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puertoBarco2.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puertoLoopMuelle.png.meta
+CruceDeMundos/Assets/Images/area1/area1_puertoMuelle.png.meta
+CruceDeMundos/Assets/Images/personajes/avatar/cara/chica/boca_6.png.meta
+CruceDeMundos/Assets/Images/personajes/avatar/cara/chica.meta
+Prisma7/UnityPackageManager/manifest.json

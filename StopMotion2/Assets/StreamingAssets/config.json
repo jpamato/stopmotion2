@@ -1,0 +1,9 @@
+{
+	"framerate":15,
+	"maxFrames": 30,
+	"lastAnimPlayTimes":3,
+	"loopPlayTimes":1,
+	"maxSavedAnims":3,
+	"minFrames2Save":3,
+	"cropHeightPx":200
+}
