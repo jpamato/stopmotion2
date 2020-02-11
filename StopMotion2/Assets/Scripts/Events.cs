@@ -15,4 +15,6 @@ public static class Events {
 	public static System.Action<int> ShowFrame = delegate { };
 
 	public static System.Action OnConfig = delegate { };
+
+    public static System.Action TeaserAnimEnds = delegate { };
 }

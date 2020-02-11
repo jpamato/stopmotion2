@@ -20,7 +20,9 @@ public class ConfigData : MonoBehaviour {
 		public int maxSavedAnims;
 		public int minFrames2Save;
 		public int cropHeightPx;
-	}
+
+        public int teaserPause;
+    }
 
 
 	// Use this for initialization

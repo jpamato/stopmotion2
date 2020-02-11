@@ -5,5 +5,6 @@
 	"loopPlayTimes":1,
 	"maxSavedAnims":3,
 	"minFrames2Save":3,
-	"cropHeightPx":200
+	"cropHeightPx":200,
+	"teaserPause":5
 }

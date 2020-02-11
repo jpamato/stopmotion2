@@ -22,7 +22,8 @@ public class Data : MonoBehaviour
 	public enum States{
 		live,
 		frame,
-		playing
+		playing,
+        teaser
 	}
 
 	public static Data Instance

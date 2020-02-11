@@ -6,7 +6,7 @@ using System;
 
 public class TimelineManager : MonoBehaviour {
 
-	public GameObject editMode,playMode;
+	public GameObject editMode,playMode,teaserMode;
 
 	public Texture2D currentFrame;
 	public List<Frame> timeline;
@@ -33,6 +33,8 @@ public class TimelineManager : MonoBehaviour {
 	int playingTimes;
 
 	public int selId;
+
+    int teaserPauseCount;
 
 	[Serializable]
 	public class Frame{
@@ -123,8 +125,9 @@ public class TimelineManager : MonoBehaviour {
 		Events.OnKeyYellow+= Stop;
 		Events.OnKeyRed+= Delete;
 		Events.OnAnyKey += Init;
+        Events.TeaserAnimEnds += TeaserAnimEnds;
 
-		selId = -1;
+        selId = -1;
 
 	}
 
@@ -159,26 +162,39 @@ public class TimelineManager : MonoBehaviour {
 			if (time >= speed) {
 				playMonitor.texture = timeline [cabezal].tex;
 				cabezal++;
-				if (cabezal >= timeline.Count) {
-					cabezal = 0;
-					if (playingLast) {
-						if (playingTimes < Data.Instance.configData.config.lastAnimPlayTimes) {
-							playingTimes++;
-						} else {
-							playingLast = false;
-							playingTimes = 0;
-							timeline = Data.Instance.savedAnims.GetNextAnim ().timeline;
-						}
-					} else {
-						if (playingTimes < Data.Instance.configData.config.loopPlayTimes) {
-							playingTimes++;
-						} else {
-							playingTimes = 0;
-							timeline = Data.Instance.savedAnims.GetNextAnim ().timeline;
-						}
+                if (cabezal >= timeline.Count) {
+                    cabezal = 0;
+                    if (teaserPauseCount < Data.Instance.configData.config.teaserPause) {
+                        if (playingLast) {
+                            if (playingTimes < Data.Instance.configData.config.lastAnimPlayTimes) {
+                                playingTimes++;
+                                teaserPauseCount++;
+                            } else {
+                                playingLast = false;
+                                playingTimes = 0;
+                                teaserPauseCount++;
+                                timeline = Data.Instance.savedAnims.GetNextAnim().timeline;
+                            }
+                        } else {
+                            if (playingTimes < Data.Instance.configData.config.loopPlayTimes) {
+                                playingTimes++;
+                                teaserPauseCount++;
+                            } else {
+                                playingTimes = 0;
+                                teaserPauseCount++;
+                                timeline = Data.Instance.savedAnims.GetNextAnim().timeline;
+                            }
 
-					}
-				}
+                        }
+                    } else {
+                        teaserPauseCount = 0;
+                        playingTimes = 0;
+                        timeline = Data.Instance.savedAnims.GetNextAnim().timeline;
+                        playMode.SetActive(false);
+                        teaserMode.SetActive(true);
+                        Data.Instance.state = Data.States.teaser;
+                    }
+                } 
 				time = 0;
 			} else {
 				time += Time.deltaTime;
@@ -210,7 +226,14 @@ public class TimelineManager : MonoBehaviour {
 		Data.Instance.state = Data.States.playing;
 	}
 
-	public void Stop(){
+    void TeaserAnimEnds() {
+        teaserMode.SetActive(false);
+        playMode.SetActive(true);
+        playingTimes = 0;
+        Data.Instance.state = Data.States.playing;
+    }
+
+    public void Stop(){
 		selId = -1;
 		Data.Instance.state = Data.States.live;	
 	}
